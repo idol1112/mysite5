@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,18 +16,13 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 
 		<div id="container" class="clearfix">
-			<div id="aside">
-				<h2>회원</h2>
-				<ul>
-					<li>회원정보</li>
-					<li>로그인</li>
-					<li>회원가입</li>
-				</ul>
-			</div>
+
+			<!-- aside -->
+			<c:import url="/WEB-INF/views/includes/asideUser.jsp"></c:import>
 			<!-- //aside -->
 
 			<div id="content">
-			
+
 				<div id="content-head">
 					<h3>회원가입</h3>
 					<div id="location">
@@ -41,16 +35,14 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="user">
 					<div id="joinOK">
-					
+
 						<p class="text-large bold">
-							회원가입을 축하합니다.<br>
-							<br>
-							<a href="${pageContext.request.contextPath}/user/lform" >[로그인하기]</a>
+							회원가입을 축하합니다.<br> <br> <a href="${pageContext.request.contextPath}/user/lform">[로그인하기]</a>
 						</p>
-							
+
 					</div>
 					<!-- //joinOK -->
 				</div>

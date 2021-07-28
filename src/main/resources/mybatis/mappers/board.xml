@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	
+	<resultMap id="resultMapBoardVo" type="com.javaex.vo.BoardVo">
+		<result column="no" property="no" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="hit" property="hit" />
+		<result column="reg_date" property="regDate" />
+		<result column="user_no" property="userNo" />
+		<result column="name" property="uName" />
+	</resultMap>
+	
+	<!-- 게시물 전체 가져오기 -->
+	<select id="selectList" parameterType="com.javaex.vo.BoardVo" resultMap="resultMapBoardVo">
+		<![CDATA[
+			select b.no,
+    			   b.title,
+       			   b.hit,
+       			   to_char(b.reg_date, 'YYYY-MM-DD HH:MI:SS') reg_date,
+       			   b.user_no,
+       			   u.name
+			from board b,users u
+			where b.user_no = u.no
+			order by b.no desc
+		]]>
+	</select>	
+	
+	
+
+	<!-- 조회수 올리기(글읽기) -->
+	<update id="updateHit" parameterType="int">
+		<![CDATA[
+			update board
+			set hit = hit+1
+			where no = #{no}
+		]]>
+	</update>
+	
+	<!-- 게시판 정보 1개 가져오기 -->
+	<select id="selectBoard" parameterType="int" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select b.no,
+				   b.title,
+			       b.content,
+			       b.hit,
+			       b.reg_date as regDate,
+			       b.user_no as userNo,
+			       u.name as uName
+			from board b,users u
+			where u.no = b.user_no
+			and b.no= #{no}
+		
+		]]>
+	</select>
+	
+	<!--  게시물 저장 -->
+	<insert id="insertBoard" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			INSERT INTO board
+			values(seq_board_no.nextval,
+			       #{title},
+			       #{content},
+			       0,
+			       sysdate,
+			       #{userNo}
+			       )			
+		]]>
+	</insert>
+	
+	<!--  게시물 수정 -->
+	<update id="updateBoard" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			update board
+			set    title = #{title},
+			       content = #{content}
+			where  no = #{no}
+		]]>
+	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		<![CDATA[
+			DELETE FROM BOARD
+			WHERE no = #{no}
+		
+		]]>
+	</delete>
+	
+
+</mapper>
