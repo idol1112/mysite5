@@ -43,7 +43,7 @@
 					<div id="list">
 						<form action="${pageContext.request.contextPath}/board/search" method="get">
 							<div class="form-group text-right">
-								<input type="text" name="search_txt" value="" 
+								<input type="text" name="keyword" value="" 
 								 	   placeholder="검색어를 입력하세요">
 								<button type="submit" id=btn_search>검색</button>
 							</div>

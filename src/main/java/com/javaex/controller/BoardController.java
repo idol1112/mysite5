@@ -30,6 +30,18 @@ public class BoardController {
 		return "board/list";
 	}
 	
+	@RequestMapping(value = "/search", method = {RequestMethod.GET, RequestMethod.POST})
+	public String search(Model model, @RequestParam("keyword") String keyword) {
+		System.out.println("[BoardController.list()]");
+		
+		List<BoardVo> boardVo = boardService.getList2(keyword);
+		
+		model.addAttribute("bList", boardVo);
+		
+		
+		return "board/list";
+	}
+	
 	@RequestMapping(value = "/read", method = {RequestMethod.GET, RequestMethod.POST})
 	public String read(Model model, @RequestParam("no") int no) {
 		System.out.println("[BoardController.read()]");

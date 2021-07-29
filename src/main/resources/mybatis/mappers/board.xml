@@ -26,9 +26,28 @@
 			where b.user_no = u.no
 			order by b.no desc
 		]]>
-	</select>	
+	</select>
 	
-	
+	<!-- 게시물 전체 가져오기(검색) -->	
+	<select id="selectList2" parameterType="String" resultMap="resultMapBoardVo">
+		<![CDATA[
+			select b.no,
+    			   b.title,
+       			   b.hit,
+       			   to_char(b.reg_date, 'YYYY-MM-DD HH:MI:SS') reg_date,
+       			   b.user_no,
+       			   u.name
+			from board b,users u
+			where b.user_no = u.no	
+		]]>
+		<if test="value != null and value != '' ">
+			and title like '%'||#{keyword}||'%'
+		</if>
+		
+		<![CDATA[
+			order by b.no desc
+		]]>
+	</select>
 
 	<!-- 조회수 올리기(글읽기) -->
 	<update id="updateHit" parameterType="int">

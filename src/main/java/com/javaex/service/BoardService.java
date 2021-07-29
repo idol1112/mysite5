@@ -21,6 +21,13 @@ public class BoardService {
 		return boardVo;
 	}
 	
+	public List<BoardVo> getList2(String keyword) {
+		System.out.println("[BoardService.getList2]");
+		
+		
+		return boardDao.selectList2(keyword);
+	}
+	
 	public BoardVo getBoard(int no) {
 		System.out.println("[BoardService.getBoard]");
 		

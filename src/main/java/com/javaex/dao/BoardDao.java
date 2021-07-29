@@ -21,6 +21,13 @@ public class BoardDao {
 		return selectList;
 	}
 	
+	//게시물 전체 가져오기(검색)
+	public List<BoardVo> selectList2(String keyword) {
+		System.out.println("[BoardDao.selectList2]");
+		
+		return sqlSession.selectList("board.selectList2", keyword);
+	}
+	
 	//조회수 올리기
 	public int updateHit(int no) {
 		System.out.println("[BoardDao.updateHit]");
