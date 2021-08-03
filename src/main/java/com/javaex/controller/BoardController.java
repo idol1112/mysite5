@@ -72,7 +72,7 @@ public class BoardController {
 	@RequestMapping(value = "/mform", method = {RequestMethod.GET, RequestMethod.POST})
 	public String modifyForm(Model model, @RequestParam("no") int no) {
 		System.out.println("[BoardController.mform()]");
-		
+		//세션에 userNo값이랑 boardVo에 userNo값이랑 비교해서 예외처리 해보기
 		BoardVo boardVo = boardService.modifyForm(no);
 		
 		model.addAttribute("boardVo", boardVo);
