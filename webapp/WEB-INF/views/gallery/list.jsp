@@ -59,7 +59,7 @@
 
 							<!-- 이미지반복영역 -->
 							<c:forEach items="${requestScope.galVo}" var="vo">
-								<li id="l-${vo.no }" data-no="${vo.no }" data-uno="${vo.userNo }">
+								<li id="l-${vo.no }" data-no="${vo.no }" data-uno="${vo.userNo }" date-session="${authUser.no}">
 									<div class="view">
 										<img class="imgItem" data-no="${vo.no }" src="${pageContext.request.contextPath }/upload/${vo.saveName }">
 										<div class="imgWriter">
@@ -192,7 +192,11 @@
 		console.log($(this));
 
 		var no = $(this).data("no");// 해당 li에 담겨진 no 꺼내기
-
+		var uno = $(this).data("uno");
+		var session = $(this).data("session");
+		console.log(uno);
+		console.log(session);
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath }/api/gallery/viewModal",
 			type : "post",
