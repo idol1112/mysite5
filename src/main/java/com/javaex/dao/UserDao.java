@@ -20,20 +20,30 @@ public class UserDao {
 	}
 	
 	//로그인 사용자 정보 가져오기2(id,pw,name,gender)
-	public UserVo selectUser2(int no) {
+	public UserVo selectUser(int no) {
 		System.out.println("[UserDao.selectUser2()]");
 		
 		return sqlSession.selectOne("user.selectUser2", no);
 		
 	}
 	
+	//회원가입 중복 id 정보 가져오기
+	public String selectUser(String id) {
+		System.out.println("[UserDao.selectUser3()]");
+		System.out.println(id);
+	    
+	    return sqlSession.selectOne("user.selectUser3", id);
+	}
+	
 	//회원 정보 입력
-	public void userInsert(UserVo userVo) {
+	public int userInsert(UserVo userVo) {
 		System.out.println("[UserDao.userInsert()]");
 		
 		int count = sqlSession.insert("user.userInsert", userVo);
 		
 		System.out.println(count + "건 저장되었습니다.");
+		
+		return count;
 		
 	}
 	

@@ -17,18 +17,30 @@ public class UserService {
 		
 		return  userDao.selectUser(userVo);
 	}
+	//회원가입 중복체크 id정보 가져오기
+	public boolean getUser(String id) {
+		System.out.println("[UserService.getUser2()]");
+		String id2 = userDao.selectUser(id);
+		
+		if(id2 == null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	
 	//회원가입 파라미터 Dao로 보내기
-	public void join(UserVo userVo) {
+	public int join(UserVo userVo) {
 		System.out.println("[UserService.join()]");
 		
-		userDao.userInsert(userVo); 
+		return userDao.userInsert(userVo); 
 	}
 	
 	public UserVo modifyForm(int no) {
 		System.out.println("[UserService.modifyForm()]");
 		
-		return userDao.selectUser2(no);
+		return userDao.selectUser(no);
 		
 	}
 	

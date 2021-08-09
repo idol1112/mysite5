@@ -165,7 +165,7 @@
 			
 			//url : "${pageContext.request.contextPath }/api/guestbook/write?name=" + userName + "&password=" + password + "&content=" + content,
 			url : "${pageContext.request.contextPath }/api/guestbook/write",		
-			type : "get",
+			type : "post",
 			//contentType : "application/json",
 			//data : {name: userName, password: password, content: content},
 			data : guestbookVo,

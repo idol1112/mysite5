@@ -28,6 +28,15 @@
 		]]>
 	</select>
 	
+	<!-- 한 사람의 정보 가져오기3(아이디 중복체크용) -->
+	<select id="selectUser3" parameterType="String" resultType="String">
+		<![CDATA[
+			select id
+			from users
+			where id = #{id}
+		]]>
+	</select>
+	
 	<!-- 유저회원가입 -->
 	<insert id="userInsert" parameterType="com.javaex.vo.UserVo">
 		<![CDATA[
